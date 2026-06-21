@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahinur Akther — Molecular Biology Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#181522;
+    --violet:#6D28D9;
+    --violet-deep:#4C1D95;
+    --teal:#0D9488;
+    --bg:#FAFAF7;
+    --bg-soft:#F1EEFB;
+    --line:#E4E0F5;
+    --grey:#6B6878;
+    --white:#FFFFFF;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- helix watermark (signature element) ---------- */
+  .helix-bg{
+    position:fixed;
+    top:0; right:-120px;
+    height:100vh;
+    width:420px;
+    z-index:0;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,247,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 0;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .logo span{color:var(--violet);}
+  .nav-links{
+    display:flex;
+    gap:40px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--grey);
+    text-decoration:none;
+    font-weight:500;
+    font-size:15px;
+    transition:color .2s ease;
+  }
+  .nav-links a.active{color:var(--violet);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    width:40px;height:40px;
+    border-radius:50%;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);
+    font-size:13px;
+    flex-shrink:0;
+  }
+  .nav-mobile-toggle{display:none;}
+
+  @media(max-width:760px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 100px;
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-size:18px;
+    color:var(--grey);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow .wave{display:inline-block;animation:wave 2.4s ease-in-out infinite;transform-origin:70% 70%;}
+  @keyframes wave{
+    0%,60%,100%{transform:rotate(0deg);}
+    10%{transform:rotate(14deg);}
+    20%{transform:rotate(-8deg);}
+    30%{transform:rotate(14deg);}
+    40%{transform:rotate(-4deg);}
+  }
+  h1.headline{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(44px,6.4vw,84px);
+    line-height:0.98;
+    letter-spacing:-0.03em;
+    margin-bottom:28px;
+  }
+  h1.headline .accent{color:var(--violet);}
+  .hero p.lede{
+    font-size:19px;
+    line-height:1.6;
+    color:var(--grey);
+    max-width:520px;
+    margin-bottom:36px;
+  }
+  .hero p.lede strong{color:var(--ink);font-weight:600;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:15px 26px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:var(--violet);
+    color:var(--white);
+    box-shadow:0 8px 20px -8px rgba(109,40,217,0.6);
+  }
+  .btn-primary:hover{box-shadow:0 12px 24px -8px rgba(109,40,217,0.7);}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .btn-secondary:hover{background:var(--ink);color:var(--white);}
+
+  /* ---------- photo ---------- */
+  .photo-wrap{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .photo-ring{
+    position:absolute;
+    inset:0;
+    border:1.5px solid var(--violet);
+    border-radius:50%;
+    opacity:0.45;
+  }
+  .photo-ring::before{
+    content:'';
+    position:absolute;
+    inset:18px;
+    border:1px solid var(--teal);
+    border-radius:50%;
+    opacity:0.5;
+  }
+  .photo-circle{
+    width:78%;
+    height:78%;
+    border-radius:50%;
+    background:linear-gradient(145deg,var(--bg-soft),#E8E4F9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    position:relative;
+    box-shadow:inset 0 0 0 1px var(--line);
+  }
+  .photo-circle svg{width:42%;height:42%;color:var(--violet);opacity:0.35;}
+  .photo-circle .placeholder-label{
+    position:absolute;
+    bottom:14%;
+    font-size:13px;
+    color:var(--grey);
+    font-weight:500;
+    letter-spacing:0.02em;
+  }
+
+  @media(max-width:880px){
+    .hero{grid-template-columns:1fr;padding-top:56px;}
+    .photo-wrap{max-width:320px;margin:0 auto;}
+  }
+
+  /* ---------- section heading pattern ---------- */
+  .section-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(34px,4.2vw,52px);
+    letter-spacing:-0.02em;
+    margin-bottom:8px;
+  }
+  .section-title .dot{color:var(--violet);}
+  .section-kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--teal);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  section{
+    position:relative;
+    padding:90px 0;
+    z-index:1;
+  }
+  section + section{border-top:1px solid var(--line);}
+
+  /* ---------- projects ---------- */
+  .project-card{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:36px;
+    align-items:start;
+    padding:36px 0;
+  }
+  .project-card + .project-card{border-top:1px solid var(--line);}
+  .project-visual{
+    width:100%;
+    aspect-ratio:4/3;
+    border-radius:16px;
+    background:linear-gradient(135deg,var(--bg-soft) 0%,#fff 100%);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .project-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--violet);
+    background:var(--bg-soft);
+    padding:5px 12px;
+    border-radius:20px;
+    margin-bottom:14px;
+    letter-spacing:0.02em;
+  }
+  .project-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:26px;
+    margin-bottom:12px;
+    letter-spacing:-0.01em;
+  }
+  .project-desc{
+    color:var(--grey);
+    font-size:16px;
+    line-height:1.65;
+    max-width:560px;
+    margin-bottom:18px;
+  }
+  .project-meta{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .meta-chip{
+    font-size:13px;
+    color:var(--ink);
+    background:transparent;
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:8px;
+  }
+
+  @media(max-width:720px){
+    .project-card{grid-template-columns:1fr;}
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:start;
+  }
+  .about-text p{
+    font-size:17px;
+    line-height:1.75;
+    color:var(--grey);
+    margin-bottom:18px;
+  }
+  .about-text strong{color:var(--ink);font-weight:600;}
+  .info-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:32px;
+  }
+  .info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .info-row:last-child{border-bottom:none;}
+  .info-label{color:var(--grey);}
+  .info-value{font-weight:600;text-align:right;}
+
+  .skills-block{margin-top:36px;}
+  .skills-block h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--teal);
+    margin-bottom:14px;
+  }
+  .skill-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .pill{
+    font-size:14px;
+    padding:8px 16px;
+    border-radius:20px;
+    background:var(--bg-soft);
+    color:var(--violet-deep);
+    font-weight:500;
+  }
+
+  @media(max-width:880px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- footer / contact ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--white);
+    padding:80px 0 36px;
+    position:relative;
+    z-index:1;
+  }
+  .footer-cta-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(30px,4vw,46px);
+    letter-spacing:-0.02em;
+    margin-bottom:30px;
+    max-width:600px;
+  }
+  footer .btn-secondary{border-color:rgba(255,255,255,0.4);color:var(--white);}
+  footer .btn-secondary:hover{background:var(--white);color:var(--ink);}
+  .footer-bottom{
+    margin-top:80px;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,0.12);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:13px;
+    color:rgba(255,255,255,0.5);
+  }
+
+  ::selection{background:var(--violet);color:var(--white);}
+</style>
+</head>
+<body>
+
+<svg class="helix-bg" viewBox="0 0 200 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#hg)" stroke-width="1.4" fill="none" opacity="0.5">
+    <path d="M40,0 C100,40 0,80 60,120 C120,160 20,200 80,240 C140,280 40,320 100,360 C160,400 60,440 120,480 C180,520 80,560 140,600 C200,640 100,680 160,720 C220,760 120,800 180,800"/>
+    <path d="M0,20 C60,60 -40,100 20,140 C80,180 -20,220 40,260 C100,300 0,340 60,380 C120,420 20,460 80,500 C140,540 40,580 100,620 C160,660 60,700 120,740 C180,780 80,800 140,800"/>
+  </g>
+  <g stroke="#6D28D9" stroke-width="1" opacity="0.28">
+    <line x1="40" y1="0" x2="0" y2="20"/>
+    <line x1="60" y1="120" x2="20" y2="140"/>
+    <line x1="80" y1="240" x2="40" y2="260"/>
+    <line x1="100" y1="360" x2="60" y2="380"/>
+    <line x1="120" y1="480" x2="80" y2="500"/>
+    <line x1="140" y1="600" x2="100" y2="620"/>
+    <line x1="160" y1="720" x2="120" y2="740"/>
+  </g>
+</svg>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo">Shahinur<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#projects">Research</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta" aria-label="Contact">✉</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero wrap">
+    <div>
+      <div class="eyebrow"><span class="wave">👋</span> Hey, I'm Shahinur</div>
+      <h1 class="headline">Molecular<br><span class="accent">Biology</span> Researcher</h1>
+      <p class="lede">I'm a recent <strong>Biochemistry & Molecular Biology</strong> graduate from the University of Chittagong, working at the intersection of gene expression and cancer biology.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn btn-secondary">View Research</a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-ring"></div>
+      <div class="photo-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <span class="placeholder-label">Photo coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS / RESEARCH -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-kicker">// research</div>
+      <h2 class="section-title">Research<span class="dot">.</span></h2>
+
+      <div class="project-card">
+        <div class="project-visual">
+          <svg width="62%" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 10 C70 30 30 50 70 70 C100 85 70 100 90 110" stroke="#6D28D9" stroke-width="2" opacity="0.55"/>
+            <path d="M90 10 C50 30 90 50 50 70 C20 85 50 100 30 110" stroke="#0D9488" stroke-width="2" opacity="0.55"/>
+            <line x1="30" y1="10" x2="90" y2="10" stroke="#6D28D9" stroke-width="1.4" opacity="0.4"/>
+            <line x1="50" y1="70" x2="70" y2="70" stroke="#0D9488" stroke-width="1.4" opacity="0.4"/>
+            <line x1="30" y1="110" x2="90" y2="110" stroke="#6D28D9" stroke-width="1.4" opacity="0.4"/>
+          </svg>
+        </div>
+        <div>
+          <span class="project-tag">Undergraduate Thesis</span>
+          <h3 class="project-title">miR-21 Expression & Novel Target Gene Identification in Breast Cancer</h3>
+          <p class="project-desc">An integrated analysis investigating microRNA-21 expression patterns in breast cancer patients, combined with bioinformatic and molecular approaches to identify a novel downstream target gene — contributing to the broader understanding of miRNA-driven gene regulation in oncogenesis.</p>
+          <div class="project-meta">
+            <span class="meta-chip">Molecular Biology</span>
+            <span class="meta-chip">Cancer Genomics</span>
+            <span class="meta-chip">Gene Expression Analysis</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-kicker">// about</div>
+      <h2 class="section-title">About<span class="dot">.</span></h2>
+
+      <div class="about-grid" style="margin-top:40px;">
+        <div class="about-text">
+          <p>I'm <strong>Shahinur Akther</strong>, a recent graduate in Biochemistry and Molecular Biology from the <strong>University of Chittagong</strong>. My academic work has centered on understanding gene regulation in disease — most recently through my undergraduate thesis on microRNA-21 and its role in breast cancer.</p>
+          <p>I'm drawn to research that connects molecular-level mechanisms to real clinical relevance, and I'm currently looking to build on this foundation — whether through graduate study, a research position, or opportunities in the biotech and pharmaceutical space.</p>
+          <p>When I'm not in the lab or reading papers, I'm usually exploring new ideas in genomics and looking for the next problem worth digging into. 💜</p>
+
+          <div class="skills-block">
+            <h3>Lab & Technical Skills</h3>
+            <div class="skill-pills">
+              <span class="pill">Gene Expression Analysis</span>
+              <span class="pill">PCR / qPCR</span>
+              <span class="pill">Molecular Cloning</span>
+              <span class="pill">Bioinformatics</span>
+              <span class="pill">Cell Culture</span>
+              <span class="pill">Data Analysis</span>
+            </div>
+            <h3>Core Strengths</h3>
+            <div class="skill-pills">
+              <span class="pill">Scientific Writing</span>
+              <span class="pill">Research Design</span>
+              <span class="pill">Critical Analysis</span>
+              <span class="pill">Collaboration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-row"><span class="info-label">Education</span><span class="info-value">B.Sc. Biochemistry & Molecular Biology</span></div>
+          <div class="info-row"><span class="info-label">University</span><span class="info-value">University of Chittagong</span></div>
+          <div class="info-row"><span class="info-label">Status</span><span class="info-value">Recent Graduate</span></div>
+          <div class="info-row"><span class="info-label">Focus</span><span class="info-value">Gene Expression, Cancer Biology</span></div>
+          <div class="info-row"><span class="info-label">Looking for</span><span class="info-value">Research / Grad / Industry roles</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-kicker section-kicker" style="color:#A78BFA;">// let's connect</div>
+    <h2 class="footer-cta-title">Interested in research collaboration or opportunities?</h2>
+    <div class="btn-row">
+      <a href="mailto:youremail@example.com" class="btn btn-primary">Get In Touch</a>
+      <a href="#projects" class="btn btn-secondary">View Research</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Shahinur Akther. All rights reserved.</span>
+      <span>Built with 💜</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
